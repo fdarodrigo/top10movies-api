@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
 import { MovieLikesService } from './movie-likes.service';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -13,5 +13,10 @@ export class MovieLikesController {
       movieId: body.movieId,
       userId: body.userId,
     });
+  }
+
+  @Get('most-liked')
+  async getMostLikedMovies() {
+    return this.movieLikesService.getMostLikedMovies();
   }
 }
